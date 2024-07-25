@@ -6,6 +6,11 @@ Use Task Scheduler to run `restart_nzxt_cam_on_idle.py` when you log into your s
 
 `restart_nzxt_cam_on_idle.py` logs are stored in `~/Documents/restart_nzxt_cam_on_idle`.
 
+# Requirements
+
+-   Python3
+-   psutils module from pypi
+
 # Task Scheduler Settings
 
 General
