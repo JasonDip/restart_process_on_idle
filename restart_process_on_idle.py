@@ -13,9 +13,9 @@ EXECUTABLE_PATH = r"C:\Program Files\NZXT CAM\NZXT CAM.exe"  # The executable to
 IDLE_THRESHOLD = 2 * 3600  # Time in seconds to idle before restarting
 
 # Set the logging settings
-log_folder = os.path.join(os.path.expanduser("~"), "Documents", "restart_process_on_idle_logs")
-log_file_path = os.path.join(log_folder, "restart_process_on_idle.log")
-logging_level = logging.DEBUG
+LOG_FOLDER = os.path.join(os.path.expanduser("~"), "Documents", "restart_process_on_idle_logs")
+LOG_FILE_PATH = os.path.join(LOG_FOLDER, "restart_process_on_idle.log")
+LOGGING_LEVEL = logging.DEBUG
 
 
 class LASTINPUTINFO(ctypes.Structure):
@@ -48,20 +48,20 @@ def start_process_hidden(EXECUTABLE_PATH):
 
 def main():
     # Ensure the directory exists
-    log_directory = os.path.dirname(log_file_path)
+    log_directory = os.path.dirname(LOG_FILE_PATH)
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
     # Configure logging with RotatingFileHandler
     handler = RotatingFileHandler(
-        log_file_path,
+        LOG_FILE_PATH,
         maxBytes=100 * 1024,  # 100 KB
         backupCount=2,  # Number of backup files
     )
 
     # Configure logging
     logging.basicConfig(
-        level=logging_level,
+        level=LOGGING_LEVEL,
         format="%(asctime)s - %(levelname)s - %(message)s",
         handlers=[handler],
     )
