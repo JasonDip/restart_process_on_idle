@@ -84,10 +84,10 @@ def main():
                 logging.info(f"Idle threshold reached: {idle_time}/{IDLE_THRESHOLD}")
 
             # Kill the process if it is running
-            logging.debug("Killing {PROCESS_NAME}...")
+            logging.debug(f"Killing {PROCESS_NAME}...")
             kill_process_by_name(PROCESS_NAME)
 
-            logging.debug("{PROCESS_NAME} was killed, sleeping for 10 seconds...")
+            logging.debug(f"{PROCESS_NAME} was killed, sleeping for 10 seconds...")
             time.sleep(10)
 
             # Start the process
