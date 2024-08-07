@@ -69,13 +69,20 @@ def main():
     logging.critical("=== Starting script ===")
     logging.debug(f"idle_threshold={idle_threshold/3600} hours")
 
+    first_run = True
+
     while True:
         idle_time = get_idle_duration()
         logging.debug(f"idle_time={idle_time/3600} hours")
 
         # Reset NZXT CAM only while idle
-        if idle_time >= idle_threshold:
-            logging.info(f"Idle threshold reached: {idle_time}/{idle_threshold}")
+        if idle_time >= idle_threshold or first_run:
+            if first_run:
+                logging.info(f"first_run={first_run}")
+                first_run = False
+            else:
+                logging.info(f"Idle threshold reached: {idle_time}/{idle_threshold}")
+
             # Kill the process if it is running
             logging.debug("Killing NZXT Cam...")
             kill_process_by_name(process_name)
