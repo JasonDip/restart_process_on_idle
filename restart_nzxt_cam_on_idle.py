@@ -39,7 +39,7 @@ def start_process_hidden(executable_path):
 def main():
     # Get the path to the current user's Documents folder
     documents_folder = os.path.join(
-        os.path.expanduser("~"), "Documents", "restart_nzxt_cam_on_idle"
+        os.path.expanduser("~"), "Documents", "restart_nzxt_cam_logs"
     )
     log_file_path = os.path.join(documents_folder, "restart_nzxt_cam_on_idle.log")
 
@@ -95,9 +95,9 @@ def main():
             start_process_hidden(executable_path)
 
             # Wait some time before allowing another potential reset
+            logging.info(f"CAM restarted. Sleeping {sleep_after_restart/3600} hours")
             sleep_after_restart = 3 * 3600
             time.sleep(sleep_after_restart)
-            logging.info(f"CAM restarted. Sleeping {sleep_after_restart/3600} hours")
         else:
             # Check idle time again in 10 minutes
             time.sleep(600)
