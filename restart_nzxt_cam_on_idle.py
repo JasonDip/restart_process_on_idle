@@ -67,13 +67,13 @@ def main():
     idle_threshold = 2 * 3600  # 2 hours in seconds
 
     logging.critical("=== Starting script ===")
-    logging.debug(f"idle_threshold={idle_threshold/3600} hours")
+    logging.debug(f"idle_threshold={round(idle_threshold/3600, 2)} hours")
 
     first_run = True
 
     while True:
         idle_time = get_idle_duration()
-        logging.debug(f"idle_time={idle_time/3600} hours")
+        logging.debug(f"idle_time={round(idle_time/3600, 2)} hours")
 
         # Reset NZXT CAM only while idle
         if idle_time >= idle_threshold or first_run:
@@ -97,7 +97,9 @@ def main():
 
             # Wait some time before allowing another potential reset
             sleep_after_restart = 3 * 3600
-            logging.info(f"CAM restarted. Sleeping {sleep_after_restart/3600} hours")
+            logging.info(
+                f"CAM restarted. Sleeping {round(sleep_after_restart/3600, 2)} hours"
+            )
             time.sleep(sleep_after_restart)
         else:
             # Check idle time again in 10 minutes
