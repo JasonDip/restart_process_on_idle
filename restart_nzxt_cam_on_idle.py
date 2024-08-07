@@ -93,10 +93,11 @@ def main():
             # Start the process in hidden mode and immediately return
             logging.debug("Starting NZXT Cam...")
             start_process_hidden(executable_path)
+            # os.startfile(executable_path)
 
             # Wait some time before allowing another potential reset
-            logging.info(f"CAM restarted. Sleeping {sleep_after_restart/3600} hours")
             sleep_after_restart = 3 * 3600
+            logging.info(f"CAM restarted. Sleeping {sleep_after_restart/3600} hours")
             time.sleep(sleep_after_restart)
         else:
             # Check idle time again in 10 minutes
