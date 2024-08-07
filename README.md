@@ -1,12 +1,16 @@
 # About
 
-NZXT Cam is needed to run the screen on my NZXT Kraken Elite AIO. Annoyingly, it has a memory leak issue and NZXT is not able to fix it. This script is used to (during idle) restart NZXT Cam to release the memory.
+This script is general-use and can be used to restart any process - see `PROCESS_NAME` and `EXECUTABLE_PATH`. The use case outlined in this document is to restart the NZXT CAM application.
 
-Use Task Scheduler to run `restart_nzxt_cam_on_idle.py` when you log into your system. Do not set the task to run on idle, the script is already taking care of checking the idle time. The script is designed to stay alive because when you restart NZXT Cam, it is attached to the script's process. I wasn't able to detach it; I think the issue is related to how Cam does its logs.
+NZXT CAM is needed to run the screen on my NZXT AIO. Annoyingly, it has a memory leak issue and NZXT is not able to fix it. The script restarts NZXT CAM when it is first ran and then when the computer has been idle for some time (`IDLE_THRESHOLD`).
 
-Make sure to go to the settings of NZXT CAM and DISABLE it from starting on startup. The script will take care of launching the app when you unlock your workstation for the first time.
+I recommend setting the script to automatically run when the workstation is unlocked - see Task Scheduler Settings section below. If you follow this suggestion, then NZXT CAM will restart after idling for `IDLE_THRESHOLD` seconds and when you unlock your workstation. This should be often enough that you won't be affected by the memory leak too much.
 
-`restart_nzxt_cam_on_idle.py` logs are stored in `~/Documents/restart_nzxt_cam_on_idle`.
+Use Task Scheduler to run `restart_process_on_idle.py`. Do not set the task to run on idle, the script is already taking care of checking the idle time. The script is designed to stay alive alongside NZXT CAM.
+
+Make sure to go to the settings of NZXT CAM and **DISABLE** it from starting on Windows startup. The script will take care of launching the app.
+
+`restart_process_on_idle.py` logs are stored in `~/Documents/restart_process_on_idle_logs`.
 
 # Requirements
 
@@ -25,7 +29,7 @@ Triggers
 
 Actions
 
--   C:\Users\Jason\AppData\Local\Programs\Python\Python312\pythonw.exe "D:\Projects\restart_nzxt_cam\restart_nzxt_cam_on_idle.py"
+-   Use python to run the script, for example: `C:\Users\Jason\AppData\Local\Programs\Python\Python312\pythonw.exe "D:\Projects\restart_process_on_idle\restart_process_on_idle.py"`
 
 Conditions
 
