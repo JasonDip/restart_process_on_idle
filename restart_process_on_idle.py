@@ -47,27 +47,13 @@ def start_process_hidden(EXECUTABLE_PATH):
 
 
 def main():
+    logging.critical("--- Starting script ---")
+    logging.debug(f"IDLE_THRESHOLD={round(IDLE_THRESHOLD/3600, 2)} hours")
+    
     # Ensure the directory exists
     log_directory = os.path.dirname(LOG_FILE_PATH)
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
-
-    # Configure logging with RotatingFileHandler
-    handler = RotatingFileHandler(
-        LOG_FILE_PATH,
-        maxBytes=100 * 1024,  # 100 KB
-        backupCount=2,  # Number of backup files
-    )
-
-    # Configure logging
-    logging.basicConfig(
-        level=LOGGING_LEVEL,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        handlers=[handler],
-    )
-
-    logging.critical("--- Starting script ---")
-    logging.debug(f"IDLE_THRESHOLD={round(IDLE_THRESHOLD/3600, 2)} hours")
 
     first_run = True
 
@@ -103,4 +89,21 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Configure logging with RotatingFileHandler
+    handler = RotatingFileHandler(
+        LOG_FILE_PATH,
+        maxBytes=100 * 1024,  # 100 KB
+        backupCount=2,  # Number of backup files
+    )
+
+    # Configure logging
+    logging.basicConfig(
+        level=LOGGING_LEVEL,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[handler],
+    )
+
+    try:
+        main()
+    except Exception as e:
+        logging.error(e)
