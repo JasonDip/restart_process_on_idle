@@ -2,9 +2,9 @@
 
 This script is general-use and can be used to restart any process - see `PROCESS_NAME` and `EXECUTABLE_PATH`. The use case outlined in this document is to restart the NZXT CAM application.
 
-NZXT CAM is needed to run the screen on my NZXT AIO. Annoyingly, it has a memory leak issue and NZXT is not able to fix it. The script restarts NZXT CAM when it is first ran and then when the computer has been idle for some time (`IDLE_THRESHOLD`).
+NZXT CAM is needed to run the screen on my NZXT AIO. Annoyingly, it has a memory leak issue and NZXT is not able to fix it. The script attempts to mitigate the effects of the memory leak by restarting NZXT CAM on occassion; when the script is first ran and then when the computer has been idle for some time (`IDLE_THRESHOLD`).
 
-I recommend setting the script to automatically run when the workstation is unlocked - see Task Scheduler Settings section below. If you follow this suggestion, then NZXT CAM will restart after idling for `IDLE_THRESHOLD` seconds and when you unlock your workstation. This should be often enough that you won't be affected by the memory leak too much.
+I recommend setting the script to automatically run when the workstation is unlocked - see Task Scheduler Settings section below. If you follow this suggestion, then NZXT CAM will restart after idling for `IDLE_THRESHOLD` seconds and when you unlock your workstation.
 
 Use Task Scheduler to run `restart_process_on_idle.py`. Do not set the task to run on idle, the script is already taking care of checking the idle time. The script is designed to stay alive alongside NZXT CAM.
 
