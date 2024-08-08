@@ -36,7 +36,11 @@ def get_idle_duration():
 def kill_process_by_name(PROCESS_NAME):
     for proc in psutil.process_iter(["name"]):
         if proc.info["name"] == PROCESS_NAME:
-            proc.kill()
+            # Using try-except because there could be multiple processes with the same name that all shut down together.
+            try:
+                proc.kill()
+            except Exception as e:
+                logging.warn(f"Process wasn't able to be killed, skipping. Exception: {e}")
 
 
 def start_process_hidden(EXECUTABLE_PATH):
