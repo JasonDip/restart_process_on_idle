@@ -70,10 +70,10 @@ def main():
                 logging.info(f"Idle threshold reached: {idle_time}/{IDLE_THRESHOLD}")
 
             # Kill the process if it is running
-            logging.debug(f"Killing {PROCESS_NAME}...")
+            logging.debug(f"Killing '{PROCESS_NAME}'...")
             kill_process_by_name(PROCESS_NAME)
 
-            logging.debug(f"{PROCESS_NAME} was killed, sleeping for 10 seconds...")
+            logging.debug(f"'{PROCESS_NAME}' was killed, sleeping for 10 seconds...")
             time.sleep(10)
 
             # Start the process
@@ -81,7 +81,7 @@ def main():
             start_process_hidden(EXECUTABLE_PATH)
 
             # Wait some time before allowing another reset
-            logging.info(f"{PROCESS_NAME} restarted. Sleeping {round(IDLE_THRESHOLD/3600, 2)} hours")
+            logging.info(f"Restart process completed, sleeping {round(IDLE_THRESHOLD/3600, 2)} hours")
             time.sleep(IDLE_THRESHOLD)
         else:
             # Check idle time again in 10 minutes
