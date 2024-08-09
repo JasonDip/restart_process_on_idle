@@ -65,7 +65,7 @@ def main():
         idle_time = get_idle_duration()
         logging.debug(f"idle_time={round(idle_time/3600, 2)} hours")
 
-        # Reset NZXT CAM only while idle
+        # Reset NZXT CAM only while idle or on first run
         if idle_time >= IDLE_THRESHOLD or first_run:
             if first_run:
                 logging.info(f"first_run={first_run}")
@@ -73,22 +73,19 @@ def main():
             else:
                 logging.info(f"Idle threshold reached: {idle_time}/{IDLE_THRESHOLD}")
 
-            # Kill the process if it is running
             logging.debug(f"Killing '{PROCESS_NAME}'...")
             kill_process_by_name(PROCESS_NAME)
 
             logging.debug(f"'{PROCESS_NAME}' was killed, sleeping for 10 seconds...")
             time.sleep(10)
 
-            # Start the process
             logging.debug(f"Starting '{EXECUTABLE_PATH}'...")
             start_process_hidden(EXECUTABLE_PATH)
 
-            # Wait some time before allowing another reset
             logging.info(f"Restart process completed, sleeping {round(IDLE_THRESHOLD/3600, 2)} hours")
             time.sleep(IDLE_THRESHOLD)
         else:
-            # Check idle time again in 10 minutes
+            # Haven't idled long enough - check idle time again in 10 minutes
             time.sleep(600)
 
 
@@ -110,4 +107,4 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        logging.error(e)
+        logging.error(e, exc_info=1)
