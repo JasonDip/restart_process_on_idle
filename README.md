@@ -29,7 +29,7 @@ Triggers
 
 Actions
 
--   Use python to run the script, for example: `C:\Users\Jason\AppData\Local\Programs\Python\Python312\pythonw.exe "D:\Projects\restart_process_on_idle\restart_process_on_idle.py"`
+-   Use pythonw to run the script, for example: `C:\Users\Jason\AppData\Local\Programs\Python\Python312\pythonw.exe "D:\Projects\restart_process_on_idle\restart_process_on_idle.py"`
 
 Conditions
 
