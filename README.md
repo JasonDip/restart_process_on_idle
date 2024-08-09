@@ -15,7 +15,7 @@ Make sure to go to the settings of NZXT CAM and **DISABLE** it from starting on 
 # Requirements
 
 -   Python3
--   psutils module from pypi
+-   psutil from pypi
 
 # Task Scheduler Settings
 
